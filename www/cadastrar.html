@@ -6,7 +6,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
   <script src="components/loader.js"></script>
   <script src="lib/onsenui/js/onsenui.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="components/acao.js"> </script>
@@ -14,6 +15,14 @@
   <link rel="stylesheet" href="components/loader.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="css/styleCadastro.css">
+
+   <script>
+    $(document).ready(function(){
+      preencheHora();
+      preencheMinuto();
+    });
+  </script>
+
 </head>
 <body>
 <h3 style="margin-top:5vh; text-align: center;margin-bottom: 2vh"> Cadastro de Permanência </h3>
@@ -25,7 +34,7 @@
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">CADASTRAR</a>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="cadastrarCarro.html">Carro</a>
+      <a class="dropdown-item" href="cadastrarCarro.html">Veiculo</a>
       <a class="dropdown-item" href="cadastrarUsuario.html">Usuário</a>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="cadastrar.html">Permanência</a>
@@ -36,8 +45,8 @@
     <div class="dropdown-menu">
       <a class="dropdown-item disabled" aria-disabled="true">Veículos</a>
       <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="cadastrar.html">Não saíram</a>
-      <a class="dropdown-item" href="cadastrar.html">Saíram</a>
+      <a class="dropdown-item" href="listarNaoSairam.html">Não saíram</a>
+      <a class="dropdown-item" href="listarSairam.html">Saíram</a>
     </div>
   </li>
 </ul>
@@ -46,7 +55,7 @@
 
 <div class="row nome">
   <div class="col">
-    <select class="nomeProp" id="propietario">
+    <select class="nomeProp" id="propietarioP">
       <option selected disabled> Nome do proprietário </option>
     </select>
   </div>
@@ -73,7 +82,7 @@
   </div>
   <div class="row placa">
     <div class="col">
-      <button id="salvar" class="btn btn-primary btn-block"> Cadastrar </button>
+      <button id="salvarPermanencia" class="btn btn-primary btn-block"> Cadastrar </button>
     </div>
   </div>
   </div>
