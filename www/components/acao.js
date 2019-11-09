@@ -121,24 +121,89 @@ $(document).ready(function(){
         itemlista += "<option value="+dados.id+">"+dados.nome+"</option>";
         $("#propietarioP").html(itemlista);
 
-        itemlistaDois += "<option value="+dados.placa+">"+dados.placa+"</option>";
+        itemlistaDois += "<option value="+dados.cdCarro+">"+dados.placa+"</option>";
         $("#placa").html(itemlistaDois);
-      });
-      
-      $(document).on("click", "#salvarPermanencia", function(){
-        
       });
 
     },
+    
     // caso erro
     error: function(data){
       navigator.notification.alert("Erro ao buscar registros!");
     }
     });
-  // ------------------------------ ERICK
-  $(document).on("click", "#salvarPermanencia", function(){
-    // alaoalo
-  });
+
 });
+
+
+$(document).on("click", "#teste", function(){
+        
+        var placa = $("#placa option:selected").val();
+        var idprop = $("#propietarioP option:selected").val();
+        var hora = $("#horaEntrada option:selected").text();
+        var minuto = $("#minutoEntrada option:selected").text();
+        var horario = hora + ':' + minuto;
+
+        var parametros = {
+          "cdProp":idprop,
+          "horario":horario,
+          "placa":placa
+        };
+        $.ajax({
+            type:"post", // como vou enviar os dados ao servidor
+            url: "https://estacionamentomobileta.000webhostapp.com/cadastrarPermanencia.php", //para aonde eu vou enviar
+            data:parametros, //o que eu vou enviar
+
+            //caso esteja certo
+            success: function(data){
+              navigator.notification.alert(data);
+              $("#propietarioP").val('');
+              $("#horaEntrada").val('');
+              $("#minutoEntrada").val('');
+              $("#nomeProp").val('');
+            },
+
+            //caso esteja errado
+            error: function(data){
+              navigator.notification.alert("Erro ao cadastrar!");
+            }
+          });
+
+      });
+
+$(document).ready(function(){
+  $.ajax({
+    type:"post", // Como vai enviar os dados
+    url:"https://estacionamentomobileta.000webhostapp.com/listarNaoSairam.php", // pra onde vai enviar
+    dataType:"json", // o que eu vou enviar
+    // caso sucesso
+    success: function(data){
+      var itemlista = '';
+
+      $.each(data.vaga, function(i, dados){ 
+        itemlista += "<option value="+dados.id+">"+dados.placa+"</option>";
+        $("#placaConsulta").html(itemlista);
+      });
+    },
+    
+    // caso erro
+    error: function(data){
+      navigator.notification.alert("Erro ao buscar registros!");
+    }
+    });
+
+});
+
+$(document).on("change", "#placaConsulta", function(){
+  $("#veiculos").show();
+});
+$(document).on("click", "#salvarTudo", function(){
+  this.text('salva dnv kkkkkkk');
+  $("#calcular").show();
+  $("#valor").show();
+
+});
+
+
 
 
